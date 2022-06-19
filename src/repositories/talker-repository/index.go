@@ -12,11 +12,11 @@ type talkerRepository struct {
 type UserRepository interface {
 	GetAll() ([]models.Talker, error)
 	GetByID(id int) (models.Talker, error)
-	Create(talker *database.Database) error
+	Create(talker models.Talker) error
 	Update(talker *database.Database) error
 	Delete(id int) error
 }
 
 func NewTalkerRepository(db *database.Database) UserRepository {
-	return &talkerRepository{DB: db}
+	return &talkerRepository{db}
 }

@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	app := gin.New()
+	app := gin.Default()
 	app.Use(gin.ErrorLogger())
 	router := app.Group("/api/v1")
 	routes.AddRoutes(router)

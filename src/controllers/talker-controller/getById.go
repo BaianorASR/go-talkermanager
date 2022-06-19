@@ -30,7 +30,7 @@ func GetByIdController(c *gin.Context) {
 
 	repository := talkerRepository.NewTalkerRepository(db)
 
-	useCase := talkerUsecase.NewTalkerUseCasae(repository)
+	useCase := talkerUsecase.NewTalkerUseCase(repository)
 
 	talker, err := useCase.GetByID(id)
 	if err != nil {

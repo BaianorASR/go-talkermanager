@@ -1,6 +1,8 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type Talker struct {
 	ID   int    `json:"id"`

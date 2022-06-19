@@ -13,6 +13,7 @@ func GetAllController(c *gin.Context) {
 	db, err := database.Get()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
+			"status":  http.StatusInternalServerError,
 			"message": err.Error(),
 		})
 		return
@@ -20,11 +21,12 @@ func GetAllController(c *gin.Context) {
 
 	repository := talkerRepository.NewTalkerRepository(db)
 
-	useCase := talkerUsecase.NewTalkerUseCasae(repository)
+	useCase := talkerUsecase.NewTalkerUseCase(repository)
 
 	talkers, err := useCase.GetAll()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
+			"status":  http.StatusInternalServerError,
 			"message": err.Error(),
 		})
 	}

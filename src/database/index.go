@@ -10,8 +10,8 @@ type Database struct {
 	Talkers []models.Talker `json:"talkers"`
 }
 
-func Save(t *[]models.Talker) error {
-	file, err := json.Marshal(t)
+func (d *Database) Save() error {
+	file, err := json.Marshal(d.Talkers)
 	if err != nil {
 		return err
 	}

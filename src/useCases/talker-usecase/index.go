@@ -12,12 +12,12 @@ type talkerUseCase struct {
 type UseCase interface {
 	GetAll() ([]models.Talker, error)
 	GetByID(id int) (models.Talker, error)
-	// Create(talker *database.Database) error
+	Create(talker models.Talker) error
 	// Update(talker *database.Database) error
 	// Delete(id int) error
 }
 
-func NewTalkerUseCasae(r talkerRepository.UserRepository) UseCase {
+func NewTalkerUseCase(r talkerRepository.UserRepository) UseCase {
 	return talkerUseCase{
 		repository: r,
 	}
@@ -29,4 +29,8 @@ func (t talkerUseCase) GetAll() ([]models.Talker, error) {
 
 func (t talkerUseCase) GetByID(id int) (models.Talker, error) {
 	return t.repository.GetByID(id)
+}
+
+func (t talkerUseCase) Create(talker models.Talker) error {
+	return t.repository.Create(talker)
 }
