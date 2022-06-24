@@ -21,8 +21,8 @@ func talkerRoute(router *gin.RouterGroup) {
 
 	r.GET("/", talkerController.GetAllController)
 	r.POST("/", middleware.TokenValidate, middleware.TalkerValidate, talkerController.CreateController)
+	r.PUT("/:id", middleware.TokenValidate, middleware.TalkerValidate, talkerController.UpdateController)
 	r.GET("/:id", talkerController.GetByIdController)
-	r.PUT("/:id", talkerController.GetByIdController)
 	r.DELETE("/:id", talkerController.GetByIdController)
 
 }

@@ -13,7 +13,7 @@ type UserRepository interface {
 	GetAll() ([]models.Talker, error)
 	GetByID(id int) (models.Talker, error)
 	Create(talker models.Talker) error
-	Update(talker *database.Database) error
+	Update(talker models.Talker) error
 	Delete(id int) error
 }
 

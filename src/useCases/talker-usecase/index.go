@@ -13,7 +13,7 @@ type UseCase interface {
 	GetAll() ([]models.Talker, error)
 	GetByID(id int) (models.Talker, error)
 	Create(talker models.Talker) error
-	// Update(talker *database.Database) error
+	Update(talker models.Talker) error
 	// Delete(id int) error
 }
 
@@ -33,4 +33,8 @@ func (t talkerUseCase) GetByID(id int) (models.Talker, error) {
 
 func (t talkerUseCase) Create(talker models.Talker) error {
 	return t.repository.Create(talker)
+}
+
+func (t talkerUseCase) Update(talker models.Talker) error {
+	return t.repository.Update(talker)
 }
