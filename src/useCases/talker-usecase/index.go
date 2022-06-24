@@ -14,7 +14,7 @@ type UseCase interface {
 	GetByID(id int) (models.Talker, error)
 	Create(talker models.Talker) error
 	Update(talker models.Talker) error
-	// Delete(id int) error
+	Delete(id int) error
 }
 
 func NewTalkerUseCase(r talkerRepository.UserRepository) UseCase {
@@ -37,4 +37,8 @@ func (t talkerUseCase) Create(talker models.Talker) error {
 
 func (t talkerUseCase) Update(talker models.Talker) error {
 	return t.repository.Update(talker)
+}
+
+func (t talkerUseCase) Delete(id int) error {
+	return t.repository.Delete(id)
 }

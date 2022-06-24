@@ -19,10 +19,16 @@ func talkerRoute(router *gin.RouterGroup) {
 	router.Use(Cors())
 	r := router.Group("/talker")
 
-	r.GET("/", talkerController.GetAllController)
-	r.POST("/", middleware.TokenValidate, middleware.TalkerValidate, talkerController.CreateController)
-	r.PUT("/:id", middleware.TokenValidate, middleware.TalkerValidate, talkerController.UpdateController)
 	r.GET("/:id", talkerController.GetByIdController)
-	r.DELETE("/:id", talkerController.GetByIdController)
+	r.GET("/", talkerController.GetAllController)
+	{
+		r.Use(middleware.TokenValidate)
+		r.DELETE("/:id", talkerController.DeleteController)
+		{
+			r.Use(middleware.TalkerValidate)
+			r.POST("/", talkerController.CreateController)
+			r.PUT("/:id", talkerController.UpdateController)
+		}
+	}
 
 }
