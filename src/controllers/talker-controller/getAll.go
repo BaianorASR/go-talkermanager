@@ -12,7 +12,7 @@ import (
 func GetAllController(c *gin.Context) {
 	db, err := database.Get()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
 			"status":  http.StatusInternalServerError,
 			"message": err.Error(),
 		})
@@ -25,10 +25,11 @@ func GetAllController(c *gin.Context) {
 
 	talkers, err := useCase.GetAll()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
 			"status":  http.StatusInternalServerError,
 			"message": err.Error(),
 		})
+		return
 	}
 
 	c.JSON(http.StatusOK, talkers)

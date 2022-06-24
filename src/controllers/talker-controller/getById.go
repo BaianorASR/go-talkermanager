@@ -14,7 +14,8 @@ func GetByIdController(c *gin.Context) {
 	paramID := c.Param("id")
 	id, err := strconv.Atoi(paramID)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+			"status":  http.StatusBadRequest,
 			"message": "Invalid id",
 		})
 		return
@@ -22,7 +23,8 @@ func GetByIdController(c *gin.Context) {
 
 	db, err := database.Get()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+			"status":  http.StatusInternalServerError,
 			"message": err.Error(),
 		})
 		return
@@ -34,7 +36,8 @@ func GetByIdController(c *gin.Context) {
 
 	talker, err := useCase.GetByID(id)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+			"status":  http.StatusInternalServerError,
 			"message": err.Error(),
 		})
 		return
