@@ -15,6 +15,7 @@ type UseCase interface {
 	Create(talker models.Talker) error
 	Update(talker models.Talker) error
 	Delete(id int) error
+	Search(query string) []models.Talker
 }
 
 func NewTalkerUseCase(r talkerRepository.UserRepository) UseCase {
@@ -41,4 +42,8 @@ func (t talkerUseCase) Update(talker models.Talker) error {
 
 func (t talkerUseCase) Delete(id int) error {
 	return t.repository.Delete(id)
+}
+
+func (t talkerUseCase) Search(query string) []models.Talker {
+	return t.repository.Search(query)
 }

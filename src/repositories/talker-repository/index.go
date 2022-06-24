@@ -15,6 +15,7 @@ type UserRepository interface {
 	Create(talker models.Talker) error
 	Update(talker models.Talker) error
 	Delete(id int) error
+	Search(query string) []models.Talker
 }
 
 func NewTalkerRepository(db *database.Database) UserRepository {

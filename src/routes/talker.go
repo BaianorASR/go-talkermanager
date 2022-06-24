@@ -23,6 +23,7 @@ func talkerRoute(router *gin.RouterGroup) {
 	r.GET("/", talkerController.GetAllController)
 	{
 		r.Use(middleware.TokenValidate)
+		r.GET("/search", talkerController.SearchController)
 		r.DELETE("/:id", talkerController.DeleteController)
 		{
 			r.Use(middleware.TalkerValidate)
