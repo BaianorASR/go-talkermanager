@@ -7,13 +7,22 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func talkerRoute(router *gin.RouterGroup) {
-	r := router.Group("/talker")
-	{
-		r.GET("/", talkerController.GetAllController)
-		r.POST("/", middleware.TokenValidate, middleware.TalkerValidate, talkerController.CreateController)
-		r.GET("/:id", talkerController.GetByIdController)
-		r.PUT("/:id", talkerController.GetByIdController)
-		r.DELETE("/:id", talkerController.GetByIdController)
+func Cors() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Add("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Add("Content-Type", "application/json")
+		c.Next()
 	}
+}
+
+func talkerRoute(router *gin.RouterGroup) {
+	router.Use(Cors())
+	r := router.Group("/talker")
+
+	r.GET("/", talkerController.GetAllController)
+	r.POST("/", middleware.TokenValidate, middleware.TalkerValidate, talkerController.CreateController)
+	r.GET("/:id", talkerController.GetByIdController)
+	r.PUT("/:id", talkerController.GetByIdController)
+	r.DELETE("/:id", talkerController.GetByIdController)
+
 }

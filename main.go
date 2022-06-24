@@ -7,8 +7,9 @@ import (
 )
 
 func main() {
-	app := gin.Default()
-	app.Use(gin.ErrorLogger())
+	// gin.ForceConsoleColor()
+	gin.Recovery()
+	app := gin.New()
 	router := app.Group("/api/v1")
 	routes.AddRoutes(router)
 
