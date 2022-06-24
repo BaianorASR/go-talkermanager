@@ -42,8 +42,8 @@ func CreateController(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"status":  http.StatusOK,
+	c.JSON(http.StatusCreated, gin.H{
+		"status":  http.StatusCreated,
 		"message": "Talker created",
 	})
 }
